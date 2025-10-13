@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Smart To-Do List — Sri Jainthu</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" id="app">
+    <header class="header">
+      <div class="brand">
+        <h1>Smart To-Do</h1>
+        <p class="muted">Manage tasks • stay focused</p>
+      </div>
+      <div class="header-controls">
+        <div class="stats" id="stats">0 tasks • 0 done</div>
+        <button id="themeToggle" class="btn small">Toggle Theme</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="card" id="createCard" aria-labelledby="createHeading">
+        <h2 id="createHeading">Add New Task</h2>
+        <form id="taskForm" autocomplete="off">
+          <div class="form-row">
+            <input id="title" name="title" placeholder="Task title (required)" required />
+            <select id="priority" name="priority" aria-label="Priority">
+              <option value="Low">Low</option>
+              <option value="Medium" selected>Medium</option>
+              <option value="High">High</option>
+            </select>
+            <input id="dueDate" name="dueDate" type="date" />
+          </div>
+          <div class="form-row">
+            <textarea id="description" name="description" placeholder="Description (optional)" rows="2"></textarea>
+          </div>
+          <div class="form-row actions">
+            <button type="submit" id="addBtn" class="btn primary">Add Task</button>
+            <button type="button" id="clearBtn" class="btn">Clear</button>
+            <div class="muted small" id="errorMsg" role="alert" aria-live="polite"></div>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" id="controlsCard" aria-label="Controls">
+        <div class="controls-row">
+          <input id="search" placeholder="Search tasks..." />
+          <select id="filterPriority">
+            <option value="All">All priorities</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+          <select id="filterComplete">
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Completed">Completed</option>
+          </select>
+          <button id="clearAll" class="btn danger">Clear All</button>
+        </div>
+      </section>
+
+      <section class="card" id="listCard" aria-labelledby="listHeading">
+        <h2 id="listHeading">Tasks</h2>
+        <div class="progress-wrap">
+          <div class="progress" id="progressBar" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+          <div class="progress-text" id="progressText">Completed 0 / 0</div>
+        </div>
+
+        <ul id="taskList" class="task-list" aria-live="polite"></ul>
+
+        <div class="list-footer">
+          <button id="loadMore" class="btn">Load more</button>
+          <div class="muted small">Rendered <span id="renderCount">0</span> of <span id="totalCount">0</span></div>
+        </div>
+      </section>
+    </main>
+
+
+    <!-- Small confetti canvas for celebration -->
+    <canvas id="confettiCanvas" class="confetti"></canvas>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
